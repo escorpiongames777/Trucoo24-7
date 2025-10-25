@@ -31,21 +31,35 @@
 
     *{box-sizing:border-box;margin:0;padding:0}
     html,body{height:100%}
+    html,body{overflow-x:hidden;} /* evita cualquier empuje horizontal subpixel */
+
     body{
       font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
       color:var(--text);
       -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility;
       background:var(--bg);
+      position:relative;
     }
 
-    /* fondo patrón con viñeta */
+    /* FIX anti-artefactos: elimina pseudo-elementos fantasma */
+    html::before, html::after, body::before, body::after{
+      content:none !important; display:none !important; border:0 !important;
+    }
+
+    /* Fondo patrón con viñeta SEGURA (sin attachment fixed) */
     .bg{
       position:fixed; inset:0; z-index:-2; pointer-events:none;
+      /* capa de viñeta suave: sin superposiciones conflictivas */
       background:
-        radial-gradient(1100px 650px at 50% -10%, rgba(255,255,255,.92), rgba(255,255,255,0) 60%),
-        radial-gradient(950px 560px at 50% 120%, rgba(255,255,255,.86), rgba(255,255,255,0) 60%),
+        radial-gradient(1200px 700px at 50% -10%, rgba(255,255,255,.95), rgba(255,255,255,0) 60%),
+        radial-gradient(1000px 600px at 50% 120%, rgba(255,255,255,.88), rgba(255,255,255,0) 60%),
         url("wsp-wallpaper.png");
-      background-repeat:repeat; background-size:auto; background-attachment:fixed; opacity:.96;
+      background-repeat:repeat;
+      background-size:auto;
+      background-attachment:scroll;   /* <- antes era fixed; esto elimina líneas negras */
+      opacity:.96;
+      will-change: transform;         /* ayuda a la composición sin artefactos */
+      transform: translateZ(0);       /* fuerza capa GPU estable */
     }
 
     .wrap{max-width:var(--maxw);margin:0 auto;padding:28px 16px 44px}
