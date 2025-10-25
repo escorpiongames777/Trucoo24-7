@@ -15,7 +15,6 @@
       --ok:#20c65a;
       --btn:#25D366;
       --btn-text:#ffffff;
-
       --maxw:510px;
       --gap-logo-title:18px;
       --mt-top:14px;
@@ -33,39 +32,22 @@
     body{
       font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
       color:var(--text);
-      -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility;
-      background:var(--bg);
-      position:relative;
+      -webkit-font-smoothing:antialiased;
+      background:#fefefe;
     }
 
-    /* Capa 1: PATRÓN WhatsApp (sin escalar => sin pliegues) */
-    .bg-pattern{
-      position:fixed; inset:0; z-index:-3; pointer-events:none;
-      background-color: var(--bg);
-      background-image: url("wsp-wallpaper.png");
-      background-repeat: repeat;
-      background-position: top left;
-      background-size: auto;              /* clave: no escalar el tile */
-      image-rendering: auto;
-      transform: translateZ(0);           /* estabilidad en GPU */
-    }
-
-    /* Capa 2: VIÑETA suave (separada para evitar barras) */
-    .bg-vignette{
-      position:fixed; inset:0; z-index:-2; pointer-events:none;
-      background:
-        radial-gradient(1200px 700px at 50% -10%, rgba(255,255,255,.95), rgba(255,255,255,0) 60%),
-        radial-gradient(1000px 600px at 50% 120%, rgba(255,255,255,.88), rgba(255,255,255,0) 60%);
-      background-attachment: scroll;      /* nada de fixed para evitar artefactos */
-      mix-blend-mode: normal;
+    /* Fondo WhatsApp puro, sin gradientes ni overlay */
+    .bg{
+      position:fixed; inset:0; z-index:-1;
+      background:url("wsp-wallpaper.png") repeat;
+      background-size:contain;
+      opacity:0.95;
     }
 
     .wrap{max-width:var(--maxw);margin:0 auto;padding:28px 16px 44px;text-align:center;}
 
-    .top{
-      display:flex;flex-direction:column;align-items:center;gap:var(--gap-logo-title);
-      margin-top:var(--mt-top);margin-bottom:var(--mb-top);
-    }
+    .top{display:flex;flex-direction:column;align-items:center;gap:var(--gap-logo-title);
+      margin-top:var(--mt-top);margin-bottom:var(--mb-top);}
 
     .logo{width:92px;height:92px;border-radius:50%;overflow:hidden;border:3px solid #fff;}
     .logo img{width:100%;height:100%;object-fit:cover;}
@@ -75,43 +57,38 @@
       align-items:center;justify-content:center;
     }
     .tick{font-size:21px;}
-    .tick.left{margin-right:-3px;transform:translateY(1px);}
-    .tick.right{margin-left:-3px;transform:translateY(1px);}
+    .tick.left{margin-right:-3px;}
+    .tick.right{margin-left:-3px;}
 
-    .subtitle{
-      color:var(--ok);font-weight:600;font-size:15px;letter-spacing:.1px;
-      margin:var(--mt-subtitle) 0 var(--mb-subtitle);
-    }
+    .subtitle{color:var(--ok);font-weight:600;font-size:15px;margin:var(--mt-subtitle) 0 var(--mb-subtitle);}
 
     .notice{
       background:#111b21;color:#e8ecef;border-radius:18px;padding:14px 18px;
-      font-size:15px;line-height:1.4;margin-bottom:var(--mb-notice);
+      font-size:15px;margin-bottom:var(--mb-notice);
     }
 
     .cta{
       display:block;width:100%;text-decoration:none;text-align:center;
       background:var(--btn);color:var(--btn-text);
-      font-weight:800;font-size:18px;letter-spacing:.2px;
-      padding:16px 20px;border-radius:28px;
-      box-shadow:0 16px 30px rgba(37,211,102,.34), inset 0 -2px 0 rgba(0,0,0,.10);
+      font-weight:800;font-size:18px;border-radius:28px;
+      padding:16px 20px;box-shadow:0 8px 20px rgba(37,211,102,.35);
       margin:0 auto var(--mb-btn);
-      transition:transform .04s ease;
     }
-    .cta:active{transform:translateY(1px)}
 
-    .rail{display:grid;gap:var(--rail-gap);margin:0 2px}
+    .rail{display:grid;gap:var(--rail-gap);}
     .pill,.stars{
       display:flex;align-items:center;justify-content:center;gap:8px;
-      padding:8px 12px;border-radius:14px;font-size:12px;font-weight:800;border:1px solid #dfe7ea;
+      padding:8px 12px;border-radius:14px;font-size:12px;font-weight:800;
+      border:1px solid #dfe7ea;
     }
-    .pill{background:#e7f8ee;color:#0b3b2c;border-color:#cdeed9}
-    .stars{background:#eef3f5;color:#0f2e22}
+    .pill{background:#e7f8ee;color:#0b3b2c;border-color:#cdeed9;}
+    .stars{background:#eef3f5;color:#0f2e22;}
     .pill .sq{
       width:16px;height:16px;border-radius:3px;display:grid;place-items:center;
-      background:#d0f6da;border:1px solid #b1e6c0;color:#0b3b2c;font-size:11px;line-height:1;
+      background:#d0f6da;border:1px solid #b1e6c0;color:#0b3b2c;font-size:11px;
     }
 
-    footer{margin-top:var(--footer-mt);color:#6b7b86;font-size:12px}
+    footer{margin-top:var(--footer-mt);color:#6b7b86;font-size:12px;}
 
     @media(max-width:420px){
       .headline{font-size:19px}
@@ -130,15 +107,10 @@
     fbq('init', '1508191000470104');
     fbq('track', 'PageView');
   </script>
-  <noscript><img height="1" width="1" style="display:none"
-    src="https://www.facebook.com/tr?id=1508191000470104&ev=PageView&noscript=1"
-  /></noscript>
 </head>
 
 <body>
-  <!-- CAPAS DE FONDO -->
-  <div class="bg-pattern"></div>
-  <div class="bg-vignette"></div>
+  <div class="bg"></div>
 
   <div class="wrap">
     <div class="top">
