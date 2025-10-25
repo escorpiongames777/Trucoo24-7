@@ -3,103 +3,132 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-  <title>Torneos de Truco | Jugá desde tu celular</title>
-  <meta name="description" content="Torneos de Truco Argentino en línea. Entrá al grupo de WhatsApp y empezá a jugar hoy mismo." />
+  <title>PLATAFORMA VERIFICADA • Truco 24/siete</title>
+  <meta name="description" content="Torneos de Truco por dinero real. Entrá al grupo de WhatsApp y te explicamos cómo jugar en minutos." />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
 
   <style>
     :root{
-      --bg:#0c0f13;
-      --accent:#2ec6ff;
-      --accent-2:#6ee0ff;
-      --text:#e9f1f5;
-      --muted:#9fb2c3;
-      --ok:#15c27f;
+      /* Paleta estilo WhatsApp */
+      --bg:#efeae2;          /* color base del wallpaper */
+      --text:#0b141a;        /* texto principal */
+      --muted:#54656f;       /* texto secundario */
+      --ok:#1fa855;          /* verde check/subtítulo */
+      --btn:#25D366;         /* botón WhatsApp */
+      --btn-text:#053b20;
+      --card:#ffffff;
+      --shadow:0 8px 30px rgba(0,0,0,.10);
     }
     *{box-sizing:border-box;margin:0;padding:0}
     html,body{height:100%}
     body{
       font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
-      background:#0b0e13;color:var(--text);
-      -webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;
-      overflow-x:hidden;position:relative;
+      color:var(--text);
+      -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility;
+      /* Fondo tipo WhatsApp (se reemplaza la imagen abajo en .bg) */
+      background:var(--bg);
     }
 
-    /* ==== Fondo con imágenes en capas ==== */
+    /* ===== Fondo con wallpaper de WhatsApp ===== */
     .bg{
-      position:fixed;inset:0;z-index:-2;overflow:hidden;
-    }
-    .bg img{
-      position:absolute;width:100%;height:100%;object-fit:cover;
-      filter:brightness(0.4) blur(2px);
-      animation:fade 25s infinite alternate ease-in-out;
-      transition:opacity 2s ease;
-    }
-    .bg img:nth-child(1){animation-delay:0s;}
-    .bg img:nth-child(2){animation-delay:8s;}
-    .bg img:nth-child(3){animation-delay:16s;}
-
-    @keyframes fade{
-      0%,33%{opacity:1}
-      45%,100%{opacity:0}
+      position:fixed; inset:0; z-index:-2; pointer-events:none;
+      background:
+        /* luz suave arriba y abajo para simular la app */
+        radial-gradient(1200px 700px at 50% -10%, rgba(255,255,255,.9), rgba(255,255,255,0) 60%),
+        radial-gradient(1000px 600px at 50% 120%, rgba(255,255,255,.8), rgba(255,255,255,0) 60%),
+        url("wsp-wallpaper.png");             /* <- TU IMAGEN */
+      background-repeat:repeat;
+      background-size:auto;
+      background-attachment:fixed;
+      opacity:.95;
     }
 
-    .overlay{
-      position:fixed;inset:0;
-      background:radial-gradient(circle at 50% 20%,rgba(0,0,0,.2),rgba(0,0,0,.8));
-      z-index:-1;
-    }
+    .wrap{max-width:680px;margin:0 auto;padding:22px 16px 48px}
 
-    /* ==== Contenido ==== */
-    .wrap{max-width:720px;margin:0 auto;padding:20px 16px 56px;text-align:center}
-    .badge-row{display:flex;gap:8px;flex-wrap:wrap;justify-content:center;margin-bottom:20px}
-    .badge{
-      display:flex;align-items:center;gap:6px;
-      background:rgba(10,15,20,.8);border:1px solid rgba(255,255,255,.1);
-      border-radius:999px;padding:8px 12px;color:var(--muted);font-size:12px;
-      backdrop-filter:blur(4px);
+    /* ===== Header centrado como la captura ===== */
+    .top{
+      display:flex; flex-direction:column; align-items:center; gap:12px;
+      margin-top:6px; margin-bottom:2px;
     }
     .logo{
-      width:70px;height:70px;margin:8px auto 10px;
-      border-radius:16px;
-      background:linear-gradient(135deg,var(--accent),var(--accent-2));
-      display:grid;place-items:center;color:#002333;font-weight:800;font-size:22px;
-      box-shadow:0 0 25px rgba(46,198,255,.35);
+      width:84px; height:84px; border-radius:20px; overflow:hidden;
+      background:#0b3b2c; box-shadow:var(--shadow); display:grid; place-items:center;
     }
-    h1{font-size:28px;margin:12px 0 10px}
-    .lead{color:var(--muted);font-size:15.5px;margin-bottom:18px}
+    .logo img{width:100%;height:100%;object-fit:cover}
+
+    .headline{
+      display:flex; align-items:center; gap:10px; font-weight:800; font-size:22px; letter-spacing:.2px;
+    }
+    .check{
+      width:24px;height:24px;border-radius:6px;display:grid;place-items:center;
+      background:#eafff1;color:var(--ok);border:1px solid #c9f3d8;font-size:16px;
+    }
+    .subtitle{
+      color:var(--ok); font-weight:800; font-size:16px; margin-top:2px;
+    }
+
+    /* ===== Aviso negro grande ===== */
+    .notice{
+      margin:18px auto 14px; max-width:720px;
+      background:#111b21; color:#e8ecef; text-align:center;
+      border-radius:18px; padding:16px 18px; font-size:16px; line-height:1.35;
+      box-shadow:var(--shadow);
+    }
+
+    /* ===== Botón verde estilo WhatsApp ===== */
     .cta{
-      display:inline-block;width:100%;max-width:420px;
-      text-decoration:none;background:linear-gradient(135deg,var(--accent),var(--accent-2));
-      color:#00161e;font-weight:800;font-size:18px;
-      padding:16px 20px;border-radius:14px;
-      box-shadow:0 12px 36px rgba(46,198,255,.4),inset 0 -2px 0 rgba(0,0,0,.15);
-      transition:transform .05s ease;
+      display:block; width:100%; margin:16px auto 14px; text-decoration:none;
+      background:var(--btn); color:var(--btn-text);
+      font-weight:800; font-size:18px; text-align:center; letter-spacing:.2px;
+      padding:18px 20px; border-radius:28px;
+      box-shadow:0 14px 28px rgba(37,211,102,.35), inset 0 -2px 0 rgba(0,0,0,.12);
+      transition:transform .04s ease;
     }
     .cta:active{transform:translateY(1px)}
-    .cta small{display:block;font-size:12px;font-weight:600;color:#003a48;margin-top:3px}
-    .card{
-      background:rgba(14,20,27,.9);
-      border:1px solid rgba(255,255,255,.08);
-      border-radius:18px;padding:18px;margin-top:24px;
-      backdrop-filter:blur(6px);
+    .cta small{display:block;font-size:12px;font-weight:600;opacity:.85;margin-top:4px}
+
+    /* ===== Pills sociales ===== */
+    .rail{display:grid; gap:10px; margin:10px 8px 6px}
+    .pill{
+      display:flex; align-items:center; justify-content:center; gap:8px;
+      padding:12px 14px; border-radius:14px; font-size:13px; font-weight:800;
+      background:#e7f8ee; color:#0b3b2c; border:1px solid #cdeed9;
     }
-    .point{display:flex;gap:12px;align-items:flex-start;margin:10px 0;text-align:left}
-    .dot{width:10px;height:10px;border-radius:50%;
-      background:linear-gradient(135deg,var(--accent),var(--accent-2));flex:0 0 auto;margin-top:6px}
-    .fine{color:#7f93a6;font-size:12.5px;line-height:1.5}
-    footer{margin-top:22px;font-size:12px;color:var(--muted)}
+    .stars{
+      display:flex; align-items:center; justify-content:center; gap:8px;
+      padding:12px 14px; border-radius:14px; font-size:13px; font-weight:800;
+      background:#eef3f5; color:#0f2e22; border:1px solid #dfe7ea;
+    }
+    .pill .sq{
+      width:18px; height:18px; border-radius:3px; display:grid; place-items:center;
+      background:#d0f6da; border:1px solid #b1e6c0; color:#0b3b2c; font-size:12px;
+    }
+
+    /* ===== Card blanca (cómo funciona) ===== */
+    .card{
+      background:var(--card); border:1px solid #e9eef1; border-radius:18px;
+      padding:18px; margin:18px 6px 0; box-shadow:var(--shadow);
+    }
+    .row{display:flex; align-items:flex-start; gap:10px; margin:10px 0}
+    .dot{width:10px;height:10px;border-radius:50%;background:var(--ok);margin-top:7px}
+    .fine{color:var(--muted); font-size:14px; line-height:1.55}
+
+    footer{margin:22px 6px 0; text-align:center; color:#6b7b86; font-size:12px}
+    @media(min-width:480px){
+      .headline{font-size:24px}
+      .subtitle{font-size:17px}
+    }
   </style>
 
-  <!-- Meta Pixel Code -->
+  <!-- Meta Pixel (NO TOCAR) -->
   <script>
     !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
       n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
       n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
       t.src='https://connect.facebook.net/en_US/fbevents.js';s=b.getElementsByTagName(e)[0];
       s.parentNode.insertBefore(t,s)}(window, document,'script');
-    fbq('init', '1508191000470104');
+    fbq('init', '1508191000470104');   // <-- tu Pixel ID intacto
     fbq('track', 'PageView');
   </script>
   <noscript><img height="1" width="1" style="display:none"
@@ -108,49 +137,65 @@
 </head>
 
 <body>
-  <div class="bg">
-    <img src="fondo1.jpg" alt="Mesa de truco">
-    <img src="fondo2.jpg" alt="Sala de casino">
-    <img src="fondo3.jpg" alt="Cartas sobre mesa">
-  </div>
-  <div class="overlay"></div>
+  <div class="bg"></div>
 
   <div class="wrap">
-    <div class="badge-row">
-      <span class="badge">🔒 Conexión segura (SSL)</span>
-      <span class="badge">🎯 Torneos 24/7</span>
-      <span class="badge">✅ Juego justo</span>
+    <!-- TOP centrado como la referencia -->
+    <div class="top">
+      <div class="logo"><img src="logo-truco.png" alt="Truco 24/siete"></div>
+      <div class="headline"><span class="check">✔</span> PLATAFORMA VERIFICADA <span class="check">✔</span></div>
+      <div class="subtitle">Torneos de Truco por dinero real</div>
     </div>
 
-    <div class="logo">TR</div>
-    <h1>¡Torneos de Truco en tu celular!</h1>
-    <p class="lead">Sumate a la comunidad, jugá partidas y torneos con apuesta entre jugadores reales. Entrás al grupo y te explicamos cómo participar en minutos.</p>
+    <!-- Aviso negro -->
+    <div class="notice">Te estamos conectando con nuestro equipo vía WhatsApp.</div>
 
-    <a id="cta-wsp"
-       class="cta"
+    <!-- CTA (NO TOCAR EL LINK) -->
+    <a id="cta-wsp" class="cta"
        href="https://chat.whatsapp.com/C9egwFRBTvz0j9akTL9OHX?mode=wwc"
        target="_blank" rel="noopener">
-       Entrar al grupo de WhatsApp
-       <small>Acceso inmediato · Cupos activos</small>
+       Ir a WhatsApp ahora
+       <small>Acceso inmediato · Te explicamos en minutos</small>
     </a>
 
+    <!-- Pills sociales -->
+    <div class="rail">
+      <div class="pill"><span class="sq">■</span> +10.000 jugadores ganando todos los días</div>
+      <div class="stars">★★★★★ Calificación 4.9/5 por jugadores reales</div>
+    </div>
+
+    <!-- Card blanca informativa -->
     <div class="card">
-      <div class="point"><span class="dot"></span><div><strong>Cómo funciona</strong><p class="fine">Ingresás al grupo, te explicamos las reglas y los formatos de torneo. Coordinás tu mesa y listo: a jugar.</p></div></div>
-      <div class="point"><span class="dot"></span><div><strong>Seguridad garantizada</strong><p class="fine">Autenticación de jugadores y controles activos para asegurar partidas justas.</p></div></div>
-      <div class="point"><span class="dot"></span><div><strong>Ranking y premios</strong><p class="fine">Competí, ganá puntos y subí posiciones con premios semanales.</p></div></div>
-      <div class="point"><span class="dot"></span><div><strong>100% Mobile</strong><p class="fine">Optimizado para celulares. Rápido, seguro y con diseño limpio.</p></div></div>
+      <div class="row"><span class="dot"></span>
+        <div>
+          <strong>Entrás al grupo</strong>
+          <p class="fine">Te damos la info y reglas claras. Estás listo para empezar en pocos minutos.</p>
+        </div>
+      </div>
+      <div class="row"><span class="dot"></span>
+        <div>
+          <strong>Partidas y torneos</strong>
+          <p class="fine">Coordinás tu mesa con jugadores reales. Organizamos formatos todo el día.</p>
+        </div>
+      </div>
+      <div class="row"><span class="dot"></span>
+        <div>
+          <strong>Transparencia</strong>
+          <p class="fine">Identificación de jugadores y control de fairness en cada encuentro.</p>
+        </div>
+      </div>
     </div>
 
     <footer>
-      <p>© <span id="y"></span> Torneos de Truco · Todos los derechos reservados</p>
-      <p>Al participar aceptás las reglas y el juego responsable.</p>
+      © <span id="y"></span> Torneos de Truco • Todos los derechos reservados
     </footer>
   </div>
 
   <script>
     document.getElementById('y').textContent = new Date().getFullYear();
+    // Evento de conversión (NO TOCAR)
     document.getElementById('cta-wsp').addEventListener('click',()=>{
-      try{fbq('trackCustom','Registro',{dest:'whatsapp_group'})}catch(e){}
+      try{ fbq('trackCustom','Registro',{dest:'whatsapp_group'}) }catch(e){}
     });
   </script>
 </body>
