@@ -1,34 +1,10 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Conectando...</title>
-  <style>
-    body{
-      margin:0;
-      font-family:Inter, sans-serif;
-      background:#111b21;
-      color:#fff;
-      display:flex;
-      flex-direction:column;
-      justify-content:center;
-      align-items:center;
-      height:100vh;
-      text-align:center;
-    }
-    .loader{
-      border:6px solid #2a3338;
-      border-top:6px solid #25D366;
-      border-radius:50%;
-      width:58px;
-      height:58px;
-      animation:spin 1s linear infinite;
-      margin-bottom:22px;
-    }
-    @keyframes spin{100%{transform:rotate(360deg);}}
-    p{font-size:17px;opacity:0.85;margin-top:12px;}
-  </style>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>Redirigiendo...</title>
+  <meta name="robots" content="noindex,nofollow">
 
   <script>
     !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
@@ -36,21 +12,34 @@
       n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
       t.src='https://connect.facebook.net/en_US/fbevents.js';s=b.getElementsByTagName(e)[0];
       s.parentNode.insertBefore(t,s)}(window, document,'script');
+
     fbq('init', '1508191000470104');
     fbq('track', 'PageView');
   </script>
+
+  <style>
+    body{
+      background:#0b0b0f;
+      color:#fff;
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      height:100vh;
+      font-family:Inter, sans-serif;
+      text-align:center;
+    }
+  </style>
 </head>
 
 <body>
-  <div class="loader"></div>
-  <h2>Conectando con WhatsApp...</h2>
-  <p>No cierres esta ventana</p>
+  Redirigiendo...
 
   <script>
     setTimeout(()=>{
       fbq('trackCustom','Registro');
-      window.location.href = "https://chat.whatsapp.com/Jfh9ptXNjRxF6ejSGKchc9";
-    }, 1200);
+      window.location.replace("https://chat.whatsapp.com/Jfh9ptXNjRxF6ejSGKchc9");
+    },300);
   </script>
+
 </body>
 </html>
