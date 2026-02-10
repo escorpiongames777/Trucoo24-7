@@ -36,12 +36,23 @@
       background:#fefefe;
     }
 
+    /* ===== FONDO MEJORADO (MISMO AJUSTE PRO) ===== */
     .bg{
-      position:fixed; inset:0; z-index:-1;
-      background:url("wsp-wallpaper.png") repeat;
-      background-size:contain;
-      opacity:0.95;
+      position: fixed;
+      inset: 0;
+      z-index: -1;
+      background-image: url("wsp-wallpaper.png");
+      background-repeat: repeat;
+      background-size: 380px 380px;
     }
+
+    .bg::after{
+      content:"";
+      position:absolute;
+      inset:0;
+      background: rgba(255,255,255,0.32);
+    }
+    /* =========================================== */
 
     .wrap{max-width:var(--maxw);margin:0 auto;padding:28px 16px 44px;text-align:center;}
 
@@ -72,19 +83,6 @@
       font-weight:800;font-size:18px;border-radius:28px;
       padding:16px 20px;box-shadow:0 8px 20px rgba(37,211,102,.35);
       margin:0 auto var(--mb-btn);
-    }
-
-    .rail{display:grid;gap:var(--rail-gap);}
-    .pill,.stars{
-      display:flex;align-items:center;justify-content:center;gap:8px;
-      padding:8px 12px;border-radius:14px;font-size:12px;font-weight:800;
-      border:1px solid #dfe7ea;
-    }
-    .pill{background:#e7f8ee;color:#0b3b2c;border-color:#cdeed9;}
-    .stars{background:#eef3f5;color:#0f2e22;}
-    .pill .sq{
-      width:16px;height:16px;border-radius:3px;display:grid;place-items:center;
-      background:#d0f6da;border:1px solid #b1e6c0;color:#0b3b2c;font-size:11px;
     }
 
     footer{margin-top:var(--footer-mt);color:#6b7b86;font-size:12px;}
